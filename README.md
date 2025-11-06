@@ -1,4 +1,4 @@
-# 11-02
+# 12-02
 Работа с данными (DDL/DML)
 
 ### Инструкция по выполнению домашнего задания
@@ -28,7 +28,7 @@ sudo apt install gnupg
 wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb
 sudo dpkg -i mysql-apt-config_0.8.24-1_all.deb
 sudo apt update
-sudo apt install -y mysql-server # задаём пароль 12345 для пользователя root в СУБД MySQL
+sudo apt install -y mysql-server
 sudo systemctl status mysql.service
 ```
 
@@ -45,6 +45,7 @@ mysql -u root -p
 select User,Host from mysql.user;
 exit
 ```
+<img width="357" height="215" alt="image" src="https://github.com/user-attachments/assets/fcc1b252-8cea-4b4c-a480-5cefb4e987a2" />
 
 
 1.4. Дайте все права для пользователя sys_temp. 
@@ -61,6 +62,7 @@ mysql -u root -p
 show grants for 'sys_temp'@'%';
 exit
 ```
+<img width="793" height="455" alt="image" src="https://github.com/user-attachments/assets/0989a5e9-4dd6-4ed8-80da-e7447a431663" />
 
 
 1.6. Переподключитесь к базе данных от имени sys_temp.
@@ -105,6 +107,7 @@ use SakilaDB;
 show tables;
 exit
 ```
+<img width="277" height="536" alt="image" src="https://github.com/user-attachments/assets/34d67074-db25-4911-8195-2182c1d73a1c" />
 
 *Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.*
 
@@ -115,39 +118,8 @@ exit
 Название таблицы | Название первичного ключа
 customer         | customer_id
 ```
-### просмотр структуры таблиц в БД SakilaDB :
-```sql
-mysql -u sys_temp -p
-use SakilaDB;
-show tables;
-show create table имя_таблицы;
-или
-describe имя_таблицы;
-или
-информацию о первичных ключах можно в служебных таблицах information_schema.key_column_usage
-exit
-```
+`SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' ORDER BY table_name;`
 
-
----
-## Задание 3*
-3.1. Уберите у пользователя sys_temp права на внесение, изменение и удаление данных из базы sakila.
-```sql
-mysql -u root -p 
-show grants for 'sys_temp'@'%';
-grant ALL PRIVILEGES on SakilaDB.* to 'sys_temp'@'%';
-revoke INSERT, UPDATE, DELETE on SakilaDB.* from 'sys_temp'@'%';
-show grants for 'sys_temp'@'%';
-flush privileges;
-exit
-```
-3.2. Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
-```sql
-mysql -u root -p 
-show grants for 'sys_temp'@'%';
-exit
-```
-
-*Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.*
+<img width="811" height="508" alt="image" src="https://github.com/user-attachments/assets/b183d949-24d4-4e34-8bd0-924b5fe0743a" />
 
 ---
