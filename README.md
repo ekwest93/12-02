@@ -108,6 +108,7 @@ show tables;
 exit
 ```
 <img width="277" height="536" alt="image" src="https://github.com/user-attachments/assets/34d67074-db25-4911-8195-2182c1d73a1c" />
+<img width="1286" height="842" alt="image" src="https://github.com/user-attachments/assets/6b640dfc-7b0d-4219-b0a2-f6603568d7e6" />
 
 *Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.*
 
